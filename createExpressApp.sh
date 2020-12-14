@@ -45,7 +45,7 @@ app.set('view engine', 'html');
 
 const server = http.createServer(app);
 app.get('/', (req, res) =>{
-    res.send('Hello, world!')
+    res.send('Your app is running. Start building!')
 });
 
 server.listen($PORT, hostname, () => {
