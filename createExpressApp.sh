@@ -58,7 +58,7 @@ cd $ProjectName
 npm init -y
 cd ..
 
-edho "*********************************"
+echo "*********************************"
 echo "*********installing morgan*******"
 echo "*********************************"
 
@@ -77,8 +77,14 @@ echo "*********************************"
 echo "***Installing Standard Packages**"
 echo "*********************************"
 
-
 npm install --prefix $ProjectName
+
+echo "*********************************"
+echo "*********installing morgan*******"
+echo "*********************************"
+
+
+npm install express-es6-template-engine --prefix $ProjectName
 
 
 echo "You're ready to go. Nodemon has
