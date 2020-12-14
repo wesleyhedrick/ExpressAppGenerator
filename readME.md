@@ -1,15 +1,15 @@
 # Express App Generator
 
 ## This is a shell script that will scaffold a basic Express app. 
-By 'scaffold,' I mean that it will do the following:<br>
+By 'scaffold,' I mean that it will do the following:
 
     –It makes these directories:
-        - Project directory based on name you input
-        - Views
-        Models
-        Public
-        Routes
-        
+        1. Project directory based on name you input
+        2. Views
+        3. Models
+        4. Public
+        5. Routes
+
     - It creates these files:
         app.js
         - app.js is provisioned with everything needed for basic server function.
