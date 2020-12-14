@@ -13,7 +13,7 @@ mkdir $ProjectName
 echo $PORT
 mkdir $ProjectName/public $ProjectName/view $ProjectName/models $ProjectName/routes $ProjectName/public/stylesheets
 touch $ProjectName/app.js $ProjectName/readMe.md
-touch $ProjectName/stylesheets/style.css
+touch $ProjectName/public/stylesheets/style.css
 
 
 # #Protect node_modules in .gitignore
@@ -80,7 +80,7 @@ echo "*********************************"
 npm install --prefix $ProjectName
 
 echo "*********************************"
-echo "*********installing morgan*******"
+echo "*installing es6-template-engine**"
 echo "*********************************"
 
 
