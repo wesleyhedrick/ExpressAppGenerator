@@ -1,7 +1,7 @@
 # Express App Generator
 
 ## This is a shell script that will scaffold a basic Express app. 
-By 'scaffold,' I mean that it will do the following:
+By 'scaffold,' I mean that it will do the following.
 
     –It makes these directories:
         1. Project directory based on name you input
@@ -20,7 +20,7 @@ By 'scaffold,' I mean that it will do the following:
     - It initializes the project folder with npm init -y.
     - It sets up one route with the response 'Hello, world!'
 
-While there are other helpful express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-express-application)), this express app builds all the basic and uses es6-templates instead of pug. 
+While there are other helpful express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-express-application)), this express app builds all the basics and uses es6-templates instead of [pug](pugjs.org). 
 
 How to Use It
 1. Download the folder. 
