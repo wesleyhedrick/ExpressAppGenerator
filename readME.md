@@ -9,6 +9,7 @@ By 'scaffold,' I mean that it will do the following.
         - Models
         - Public
         - Routes
+        - Config
 
     2. It creates these files:
         - app.js
@@ -17,15 +18,18 @@ By 'scaffold,' I mean that it will do the following.
                'npm install'.
             - express-es6-template-engine is set up and configured.
         - style.css
+        - .env
+        - .sequelizerc
     3. It initializes the project folder with npm init -y.
-    4. It protects node_modules in .gitignore.
+    4. It protects node_modules, .env, and sessions in .gitignore.
+    5. It installs the following modules: express, helmet, sequelize, sequelize-cli, pg, pg-hstore, path, bcryptjs, morgan, express-session, session-file-store, nodemon.
     5. It sets up one route with a canned response. 
 
 While there are other helpful Express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-Express-application)), this Express app builds all the basics and uses es6-templates instead of [pug](pugjs.org). 
 
 How to Use It (Works on Mac Only)
 1. Download the folder. 
-2. From inside the folder, use your shell run installExpressAppGenerator.sh.
+2. From inside the folder, use your shell to run installExpressAppGenerator.sh.
     Ex: zsh installExpressAppGenerator.sh
     or
     Ex: bash installExpressAppGenerator.sh

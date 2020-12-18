@@ -11,34 +11,76 @@ echo "*******************************"
 # #Make Directories
 mkdir $ProjectName
 echo $PORT
-mkdir $ProjectName/public $ProjectName/view $ProjectName/models $ProjectName/routes $ProjectName/public/stylesheets
-touch $ProjectName/app.js $ProjectName/readMe.md
-touch $ProjectName/public/stylesheets/style.css
-
+touch $ProjectName/index.js
 
 # #Protect node_modules in .gitignore
 echo "***********************************"
 echo "*Adding node_modules to .gitignore*"
+echo "*****Adding .eng to .gitignore*****"
 echo "***********************************"
+
 echo node_modules >> $ProjectName/.gitignore
+echo .env >> $ProjectName/.gitignore
+
+echo "Creating .env file"
+
+echo "DB_USER=
+DB_PASSWORD=
+DB_NAME=
+DB_HOST=
+SESSION_SECRET=" >>  $ProjectName/.env
+
+echo "Protecting sessions in .gitignore"
+echo sessions >> $ProjectName/.gitignore
+
+echo "Creating .sequelizerc file"
+echo "'use strict';
+require('dotenv').config();    // don't forget to require dotenv
+const path = require('path');
+module.exports = {
+  'config': path.resolve('config', 'config.js'),
+  'models-path': path.resolve('models'),
+  'seeders-path': path.resolve('seeders'),
+  'migrations-path': path.resolve('migrations'),
+};" >> $ProjectName/.sequelizerc
 
 echo "*******************************"
-echo "********Creating app.js********"
+echo "********Creating index.js********"
 echo "*******************************"
 
 
-echo "const http = require('http');
-const hostname = '127.0.0.1';
+echo "
+require('dotenv').config();
+const http = require('http');
 const express = require('express');
+const helmet = require('helmet');
 const morgan = require('morgan');
-const logger = morgan('tiny');
+const es6Renderer = require('express-es6-template-engine');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const app = express();
+
+
+const logger = morgan('tiny');
+const hostname = '127.0.0.1';
+
+//Register Middleware
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-const es6Renderer = require('express-es6-template-engine');
+app.use(session({
+    store: new FileStore(),  // no options for now
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: false,
+    resave: true,
+    rolling: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}));
+
 app.engine('html', es6Renderer);
 app.set('views', 'templates');
 app.set('view engine', 'html');
@@ -51,7 +93,7 @@ app.get('/', (req, res) =>{
 server.listen($PORT, hostname, () => {
     console.log('Server running at localhost, port $PORT');
 });
-" >> $ProjectName/app.js
+" >> $ProjectName/index.js
 
 # #Initialize as node package
 cd $ProjectName
@@ -62,7 +104,6 @@ echo "*********************************"
 echo "*********installing morgan*******"
 echo "*********************************"
 
-
 npm install morgan --prefix $ProjectName
 
 echo "*********************************"
@@ -71,7 +112,23 @@ echo "*********************************"
 
 npm install express --prefix $ProjectName
 
+echo "*********************************"
+echo "***sequelize, pg, pg-hstore******"
+echo "*********bcryptjs, session*********"
+echo "*********************************"
+
+npm install sequelize --prefix $ProjectName
+npm install pg --prefix $ProjectName
+npm install pg-hstore --prefix $ProjectName
+npm install bcryptjs --prefix $ProjectName
+npm install session --prefix $ProjectName
+npm install --save-dev sequelize-cli --prefix $ProjectName
+npm install path --prefix $ProjectName
+npm install dotenv --prefix $ProjectName
 npm install --save-dev nodemon --prefix $ProjectName
+npm install helmet --prefix $ProjectName
+npm install express-session --prefix $ProjectName
+npm install session-file-store --prefix $ProjectName
 
 echo "*********************************"
 echo "***Installing Standard Packages**"
@@ -87,10 +144,46 @@ echo "*********************************"
 npm install express-es6-template-engine --prefix $ProjectName
 
 
-echo "You're ready to go. Nodemon has
-been installed, but you'll need to 
-add it to your scripts and dev 
-dependencies in package.json."
+echo "*********************************"
+echo "***Initializing Sequelize-cli****"
+echo "*********************************"
+
+cd $ProjectName
+npx sequelize-cli init
+
+cd ..
+
+mkdir $ProjectName/public $ProjectName/templates $ProjectName/routes
+mkdir $ProjectName/controllers
+touch $ProjectName/controllers/index.js
+touch $ProjectName/routes/index.js
+mkdir $ProjectName/public/stylesheets
+touch $ProjectName/public/stylesheets/style.css
+$ProjectName/readMe.md
+
+
+echo "module.exports = {
+  development: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+        host: process.env.DB_HOST,
+    dialect: 'postgres',
+  }
+};" > $ProjectName/config/config.js
+
+echo "********************************"
+echo "********************************"
+echo "You're ready to go. 
+    Nodemon has been installed, but you'll need to 
+    add it to your scripts and dev 
+    dependencies in package.json. To 
+    start the app, just navigate to 
+    where you want your new app to live
+    and type createExpressApp.sh"
+echo "********************************"
+echo "********************************"
+
 
 
 

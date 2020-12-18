@@ -1,5 +1,12 @@
 cp ./createExpressApp.sh /usr/local/bin/
 chmod +x /usr/local/bin/createExpressApp.sh
+
+
+
+alias createExpressApp = createExpressApp.sh
+
+
+
 echo "\n\n"
 echo "***********************************************************************"
 echo "You're all set. 'createExpressApp.sh has been moved to usr/local/bin.'"
