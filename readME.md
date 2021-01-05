@@ -22,8 +22,9 @@ By 'scaffold,' I mean that it will do the following.
         - .sequelizerc
     3. It initializes the project folder with npm init -y.
     4. It protects node_modules, .env, and sessions in .gitignore.
-    5. It installs the following modules: express, helmet, sequelize, sequelize-cli, pg, pg-hstore, path, bcryptjs, morgan, express-session, session-file-store, nodemon.
-    5. It sets up one route with a canned response. 
+    5. It installs the following modules: express, helmet, sequelize, sequelize-cli, pg, 
+       pg-hstore, path, bcryptjs, morgan, express-session, session-file-store, nodemon.
+    6. It sets up one route with a canned response. 
 
 While there are other helpful Express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-Express-application)), this Express app builds all the basics and uses es6-templates instead of [pug](pugjs.org). 
 
