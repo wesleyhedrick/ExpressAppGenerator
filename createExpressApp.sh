@@ -64,7 +64,7 @@ const server = http.createServer(app);
 
 
 const logger = morgan('dev');
-const HOST = '0.0.0.0';
+const HOST = 'localhost';
 const PORT = $PORT
 
 //Register Middleware
