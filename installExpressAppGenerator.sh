@@ -3,7 +3,7 @@ chmod +x /usr/local/bin/createExpressApp.sh
 
 
 
-alias createExpressApp = createExpressApp.sh
+#alias createExpressApp = createExpressApp.sh
 
 
 
