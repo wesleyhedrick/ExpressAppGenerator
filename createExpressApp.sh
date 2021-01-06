@@ -175,10 +175,19 @@ echo "module.exports = {
 echo "********************************"
 echo "********************************"
 echo "You're ready to go. 
-    Nodemon has been installed, but you'll need to 
-    add it to your scripts and dev 
-    dependencies in package.json. To 
-    start the app, just navigate to 
+    Nodemon has been installed, but
+    you'll need to add it to your 
+    scripts and dev dependencies in 
+    package.json. 
+    
+    Also, don't forget to put this 
+    in your package.json to ensure 
+    nodemon runs smoothly:
+       "nodemonConfig": {
+        "ignore": [
+         "sessions/*"] 
+    
+    To start the app, just navigate to 
     where you want your new app to live
     and type createExpressApp.sh"
 echo "********************************"
