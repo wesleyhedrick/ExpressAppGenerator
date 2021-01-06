@@ -69,6 +69,8 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
+// disabling for local development
+// app.use(helmet());
 
 app.use(session({
     store: new FileStore(),  // no options for now
@@ -134,7 +136,7 @@ echo "*********************************"
 echo "***Installing Standard Packages**"
 echo "*********************************"
 
-npm install --prefix $ProjectName
+# npm install --prefix $ProjectName
 
 echo "*********************************"
 echo "*installing es6-template-engine**"
@@ -178,16 +180,14 @@ echo "You're ready to go.
     Nodemon has been installed, but
     you'll need to add it to your 
     scripts and dev dependencies in 
-    package.json. 
-    
-    Also, don't forget to put this 
+    package.json."
+echo "Also, don't forget to put this 
     in your package.json to ensure 
-    nodemon runs smoothly:
-       "nodemonConfig": {
+    nodemon runs smoothly:"
+echo '*"nodemonConfig": { 
         "ignore": [
-         "sessions/*"] 
-    
-    To start the app, just navigate to 
+         "sessions/*"]*'
+echo "To start the app, just navigate to 
     where you want your new app to live
     and type createExpressApp.sh"
 echo "********************************"
