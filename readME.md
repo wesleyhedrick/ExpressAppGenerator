@@ -26,7 +26,7 @@ By 'scaffold,' I mean that it will do the following.
        pg-hstore, path, bcryptjs, morgan, express-session, session-file-store, nodemon.
     6. It sets up one route with a canned response. 
 
-While there are other helpful Express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-Express-application)), this Express app builds all the basics and uses es6-templates instead of [pug](pugjs.org). 
+While there are other helpful Express App generators available (Have your mind blown by checking into [this](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-Express-application)), this script builds all the basics and uses es6-templates instead of [pug](pugjs.org). 
 
 How to Use It (Works on Mac Only)
 1. Download the folder. 
