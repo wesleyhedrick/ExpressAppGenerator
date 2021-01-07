@@ -35,4 +35,4 @@ How to Use It (Works on Mac Only)
     or
     Ex: bash installExpressAppGenerator.sh
 3. The install is quick, after which you should be able to create a new Express app anywhere by typing `createExpressApp.sh`. 
-
+4. Make sure to look in the `additional_Add_To.md` to add the additional codes to the individual files that needs it.
