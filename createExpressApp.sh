@@ -21,6 +21,7 @@ echo "***********************************"
 
 echo node_modules >> $ProjectName/.gitignore
 echo .env >> $ProjectName/.gitignore
+echo .DS_Store >> $ProjectName/.gitignore
 
 echo "Creating .env file"
 
@@ -59,18 +60,19 @@ const es6Renderer = require('express-es6-template-engine');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const app = express();
+const server = http.createServer(app);
 
 
-const logger = morgan('tiny');
-const hostname = '127.0.0.1';
+const logger = morgan('dev');
+const HOST = 'localhost';
+const PORT = $PORT
 
 //Register Middleware
 app.use(logger);
+app.use(helmet());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-// disabling for local development
-// app.use(helmet());
 
 app.use(session({
     store: new FileStore(),  // no options for now
@@ -87,13 +89,18 @@ app.engine('html', es6Renderer);
 app.set('views', 'templates');
 app.set('view engine', 'html');
 
-const server = http.createServer(app);
+
 app.get('/', (req, res) =>{
     res.send('Your app is running. Start building!')
 });
 
-server.listen($PORT, hostname, () => {
-    console.log('Server running at localhost, port $PORT');
+//catch all if website doesn't
+app.get('*', (req, res) => {
+    res.status(404).send('<h1>Page not found</h1>');
+});
+
+server.listen(PORT, HOST, () => {
+    console.log(`Listening at http://${HOST}:${PORT}`);
 });
 " >> $ProjectName/index.js
 
@@ -132,9 +139,9 @@ npm install helmet --prefix $ProjectName
 npm install express-session --prefix $ProjectName
 npm install session-file-store --prefix $ProjectName
 
-echo "*********************************"
-echo "***Installing Standard Packages**"
-echo "*********************************"
+# echo "*********************************"
+# echo "***Installing Standard Packages**"
+# echo "*********************************"
 
 # npm install --prefix $ProjectName
 
@@ -161,10 +168,11 @@ touch $ProjectName/controllers/index.js
 touch $ProjectName/routes/index.js
 mkdir $ProjectName/public/stylesheets
 touch $ProjectName/public/stylesheets/style.css
-$ProjectName/readMe.md
+touch $ProjectName/README.md
 
 
-echo "module.exports = {
+echo "require('dotenv').config();
+module.exports = {
   development: {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -174,6 +182,21 @@ echo "module.exports = {
   }
 };" > $ProjectName/config/config.js
 
+echo '
+// add to package.json
+    "dev": "nodemon index.js",
+      "nodemonConfig": {
+        "ignore": [
+         "sessions/*"] 
+         },
+
+// add to index.js
+    `Listening at http://${HOST}:${PORT}`
+
+// add to models/index.js
+    require('dotenv').config();
+         '>> $ProjectName/additional_Add_To.md
+
 echo "********************************"
 echo "********************************"
 echo "You're ready to go. 
@@ -181,23 +204,16 @@ echo "You're ready to go.
     you'll need to add it to your 
     scripts and dev dependencies in 
     package.json."
+
 echo "Also, don't forget to put this 
     in your package.json to ensure 
     nodemon runs smoothly:"
 echo '*"nodemonConfig": { 
         "ignore": [
          "sessions/*"]*'
+
 echo "To start the app, just navigate to 
     where you want your new app to live
     and type createExpressApp.sh"
 echo "********************************"
 echo "********************************"
-
-
-
-
-
-
-
-
-
